@@ -339,3 +339,17 @@ http.csrf(csrf -> csrf.disable())                          // stateless JWT API
 - CSRF disabled deliberately: no cookies, and the token lives in an explicit
   `Authorization` header, which is not sent automatically by browsers.
 
+
+SAST screenshots:
+![SAST](docs/screenshots/005.png)
+
+CVE: CVE-2018-8715
+Description: By sending request with only an username but no password, the attacker can make access to the website without an account.
+Reproduce the vulnerability:
+![reproduce 01](docs/screenshots/001.png)
+![reproduce 02](docs/screenshots/002.png)
+Root cause analysis: Appweb give the wrong reponse when receiving a request with an username and no password, which is 200 OK and a cookie instead of 401 Unauthorized
+Description of the applied fix: Update appweb to 7.0.3 or higher version, which changed the way of response when receiving a request containing a user name and no password.
+Vulnerability elimination:
+![fix 01](docs/screenshots/003.png)
+![fix 02](docs/screenshots/004.png)
