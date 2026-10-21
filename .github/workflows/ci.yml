@@ -61,7 +61,7 @@ jobs:
           args: >
             --failOnCVSS 7
             --enableRetired
-            --suppression ${{ github.workspace }}/.dependency-check-suppression.xml
+            --suppression /github/workspace/.dependency-check-suppression.xml.xml
 
       - name: Upload Dependency-Check report
         if: always()
